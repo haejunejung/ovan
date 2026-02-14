@@ -1,0 +1,14 @@
+# https://github.com/evilmartians/lefthook
+# Install: pnpm add -D lefthook && pnpm exec lefthook install
+pre-commit:
+  parallel: false
+  commands:
+    # 1. Format staged files (re-stage after fix)
+    format:
+      glob: '*.{js,ts,jsx,tsx,json,md,css,yaml,yml}'
+      run: pnpm exec biome format --write {staged_files}
+      stage_fixed: true
+    # 2. Lint (imports + biome) — run when any file staged
+    lint:
+      glob: '*.{js,ts,jsx,tsx,json,cjs,mjs}'
+      run: pnpm run lint

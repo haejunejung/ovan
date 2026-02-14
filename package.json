@@ -1,0 +1,85 @@
+{
+  "name": "ovan",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Overlay library for React and React Native",
+  "private": true,
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "react-native",
+    "overlay",
+    "teleport"
+  ],
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "format": "biome format --write .",
+    "lint": "biome lint --write .",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "dev": "vitest dev"
+  },
+  "main": "./dist/web/index.cjs",
+  "module": "./dist/web/index.js",
+  "types": "./dist/web/index.d.ts",
+  "exports": {
+    ".": {
+      "react-native": {
+        "import": "./dist/native/index.js",
+        "require": "./dist/native/index.cjs",
+        "types": "./dist/native/index.d.ts"
+      },
+      "import": {
+        "types": "./dist/web/index.d.ts",
+        "default": "./dist/web/index.js"
+      },
+      "require": {
+        "types": "./dist/web/index.d.ts",
+        "default": "./dist/web/index.cjs"
+      }
+    }
+  },
+  "dependencies": {
+    "mitt": "^3.0.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "latest",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "jsdom": "^28.0.0",
+    "lefthook": "^2.1.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-native-teleport": "^1.0.2",
+    "release-it": "^19.2.4",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-native-teleport": ">=1.0.2"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    },
+    "react-native": {
+      "optional": true
+    },
+    "react-native-teleport": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
