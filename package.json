@@ -5,6 +5,7 @@
   "description": "Overlay library for React and React Native",
   "private": true,
   "license": "MIT",
+  "packageManager": "pnpm@10.28.2",
   "keywords": [
     "react",
     "react-native",
