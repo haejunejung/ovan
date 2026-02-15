@@ -5,10 +5,11 @@ pre-commit:
   commands:
     # 1. Format staged files (re-stage after fix)
     format:
-      glob: '*.{js,ts,jsx,tsx,json,md,css,yaml,yml}'
+      glob: '*.{ts,tsx,json,md}'
       run: pnpm exec biome format --write {staged_files}
       stage_fixed: true
     # 2. Lint (imports + biome) — run when any file staged
     lint:
-      glob: '*.{js,ts,jsx,tsx,json,cjs,mjs}'
-      run: pnpm run lint
+      glob: '*.{ts,tsx,json}'
+      run: pnpm exec biome lint --write {staged_files}
+      stage_fixed: true
