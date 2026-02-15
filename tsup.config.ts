@@ -3,7 +3,7 @@ import { defineConfig } from "tsup"
 export default defineConfig([
   {
     entry: { "web/index": "src/web/index.ts" },
-    format: ["esm", "cjs"],
+    format: ["esm"],
     dts: true,
     external: ["react", "react-dom"],
     outDir: "dist",
@@ -11,7 +11,7 @@ export default defineConfig([
   },
   {
     entry: { "native/index": "src/native/index.ts" },
-    format: ["esm", "cjs"],
+    format: ["esm"],
     dts: true,
     external: ["react", "react-native", "react-native-teleport"],
     outDir: "dist",

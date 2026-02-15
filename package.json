@@ -25,23 +25,18 @@
     "test:coverage": "vitest run --coverage",
     "dev": "vitest dev"
   },
-  "main": "./dist/web/index.cjs",
+  "main": "./dist/web/index.js",
   "module": "./dist/web/index.js",
   "types": "./dist/web/index.d.ts",
   "exports": {
     ".": {
       "react-native": {
         "import": "./dist/native/index.js",
-        "require": "./dist/native/index.cjs",
         "types": "./dist/native/index.d.ts"
       },
       "import": {
         "types": "./dist/web/index.d.ts",
         "default": "./dist/web/index.js"
-      },
-      "require": {
-        "types": "./dist/web/index.d.ts",
-        "default": "./dist/web/index.cjs"
       }
     }
   },
