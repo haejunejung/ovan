@@ -25,10 +25,4 @@ export interface OverlayHostAdapter {
    * based on isOpen so the library does not impose a11y behavior.
    */
   wrapOverlay: (node: ReactNode, key: string, isOpen?: boolean) => ReactNode
-  /**
-   * Optional. When set, the slot calls (slotId, list) => Node so each slot gets its own
-   * Portal into its own host; otherwise one Portal would replace another's content.
-   * Use to reorder the list per slot.
-   */
-  wrapOverlayList?: (slotId: string, list: ReactNode[]) => ReactNode
 }

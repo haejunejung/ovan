@@ -1,11 +1,15 @@
 import type { ReactNode } from "react"
-import type { OverlayHostAdapter } from "../core/overlay-host-adapter"
+import { Fragment } from "react"
+import type { OverlayHostAdapter } from "../core"
 import { createTeleporter } from "./create-teleporter"
 
 /** Host name for overlay (web: single host). Export so API matches react-native. */
 export const OVERLAY_HOST_NAME = "overlay"
 
-export const { Portal, PortalHost } = createTeleporter()
+/** No-op on web; export so API matches react-native. Use as wrapper for consistent tree shape. */
+export const PortalProvider = Fragment
+
+const { Portal, PortalHost } = createTeleporter()
 
 /**
  * Adapter for React DOM: PortalHost + Portal via createTeleporter (reactive host store).

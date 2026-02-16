@@ -1,9 +1,9 @@
 import type { ReactNode } from "react"
 import { Portal, PortalHost, PortalProvider } from "react-native-teleport"
-import type { OverlayHostAdapter } from "../core/overlay-host-adapter"
+import type { OverlayHostAdapter } from "../core"
 
 /** Re-export so app code can place PortalProvider where they want (e.g. above OverlayProvider for flexibility). */
-export { Portal, PortalHost, PortalProvider }
+export { PortalProvider }
 
 /** Host name for overlay Portal. Export so apps can wrap the host (e.g. full-screen) and pass a custom adapter. */
 export const OVERLAY_HOST_NAME = "overlay"

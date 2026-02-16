@@ -1,2 +1,95 @@
+# Dependencies
 node_modules
+.pnpm-store
+
+# Build outputs
 dist
+*.tsbuildinfo
+.next
+out
+
+# Next.js (docs and any app) — .next contains chunks, cache, static, server
+.next/
+out/
+
+# Fumadocs MDX generated
+docs/.source
+
+# Testing & coverage
+coverage
+*.lcov
+.nyc_output
+playwright-report
+test-results
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE (optional: remove if you commit shared settings)
+.idea
+*.swp
+*.swo
+*~
+
+# Logs & debug
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cursor
+.cursor
+
+# React Native / Expo
+.expo
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Native projects (Expo prebuild: OvanExample, ios/, android/)
+examples/app/ios
+examples/app/android
+
+# iOS (any path: e.g. examples/app/ios)
+**/ios/Pods
+**/ios/build
+**/ios/DerivedData
+**/ios/**/*.xcuserstate
+**/ios/xcuserdata
+**/ios/.xcode.env.local
+**/ios/**/*.ipa
+
+# Android (any path: e.g. examples/app/android)
+**/android/build
+**/android/.gradle
+**/android/app/build
+**/android/local.properties
+**/android/.cxx
+**/android/captures
+**/android/app/debug
+**/android/app/release
+**/android/**/*.apk
+**/android/**/*.aab
+
+# Vite
+*.local
+
+# Turbo
+.turbo
+
+# Misc
+.cache
+*.tgz
+
+
+.docs

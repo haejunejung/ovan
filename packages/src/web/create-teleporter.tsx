@@ -5,20 +5,18 @@
  * changes (e.g. Provider Host unmount → Slot Host mount), fixing overlay not
  * appearing after navigating back to a route.
  */
-
-import type * as React from "react"
 import type { ReactNode } from "react"
 import { useSyncExternalStore } from "react"
 import { createPortal } from "react-dom"
 
-type PortalHostRef = (element: Element | null) => void
+export type PortalHostRef = (element: Element | null) => void
 
-type Teleporter = {
+export interface Teleporter {
   Portal: (props: { children: ReactNode }) => ReactNode
   PortalHost: (props: React.ComponentPropsWithoutRef<"div">) => ReactNode
 }
 
-const createHostElementStore = () => {
+function createHostElementStore() {
   let currentElement: Element | null = null
   const listeners = new Set<() => void>()
 
