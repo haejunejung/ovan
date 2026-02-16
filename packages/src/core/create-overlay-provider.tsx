@@ -10,13 +10,13 @@ import {
   useRef,
   useState,
 } from "react"
+import { createOverlay } from "./create-overlay"
 import { createOverlaySafeContext } from "./create-overlay-safe-context"
 import { createOverlaySlot } from "./create-overlay-slot"
 import {
   createUseOverlayEvent,
   type OverlayEventMap,
 } from "./create-use-overlay-event"
-import { createOverlay } from "./event"
 import { generateRandomId } from "./generate-random-id"
 import { ContentOverlayController } from "./overlay-controller-content"
 import type { OverlayHostAdapter } from "./overlay-host-adapter"

@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react"
 import { describe, expect, it, vi } from "vitest"
+import { createOverlay } from "./create-overlay"
 import { createUseOverlayEvent } from "./create-use-overlay-event"
-import { createOverlay } from "./event"
 import type { OverlayControllerLike } from "./types"
 
 const mockController: OverlayControllerLike = () => null

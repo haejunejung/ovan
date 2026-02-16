@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { createOverlay } from "./event"
+import { createOverlay } from "./create-overlay"
 import type { OverlayControllerLike } from "./types"
 
 const mockController: OverlayControllerLike = () => null
