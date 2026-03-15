@@ -8,14 +8,14 @@ hoyst works on React Native via [react-native-teleport](https://github.com/kiril
 ## Setup
 
 ```bash
-pnpm add hoyst react react-native react-native-teleport
+pnpm add hoyst react-native-teleport
 ```
 
 ### Wrap with PortalProvider
 
 ```tsx title="App.tsx"
 import { PortalProvider } from "hoyst/native"
-import { OverlayProvider, OverlaySlot } from "hoyst/native"
+import { OverlayProvider, OverlaySlot } from "hoyst"
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
 ### Open overlays
 
 ```tsx
-import { overlay } from "hoyst/native"
+import { overlay } from "hoyst"
 
 overlay.open(MyModal, { overlayId: "my-modal" })
 ```
@@ -45,7 +45,7 @@ React Native has no built-in `createPortal`. Existing JS-based portals break Rea
 
 ## Live Demo
 
-Try the React Native examples in Expo Snack:
+{/* TODO: Replace snackId with your saved Snack ID after publishing hoyst to npm */}
 
 <ExpoSnack
   snackId="@haejunejung/hoyst-demo"
@@ -55,6 +55,8 @@ Try the React Native examples in Expo Snack:
 />
 
 <Callout type="info">
-  The Expo Snack above requires hoyst to be published to npm. Until then, you can
-  run the example locally: ```bash cd examples/app && pnpm start ```
+  To set up the live demo: save a Snack at [snack.expo.dev](https://snack.expo.dev) with the hoyst example code, then update the `snackId` above. Until then, run locally:
+  ```bash
+  cd examples/app && pnpm start
+  ```
 </Callout>

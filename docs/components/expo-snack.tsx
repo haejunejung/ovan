@@ -1,9 +1,7 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-
 interface ExpoSnackProps {
-  /** Expo Snack ID (e.g., "@username/snack-name" or a hash). */
+  /** Expo Snack ID (e.g., "@username/hoyst-demo"). */
   snackId: string
   /** Title shown above the embed. */
   title?: string
@@ -13,7 +11,7 @@ interface ExpoSnackProps {
   height?: number
   /** Whether to show the preview panel. */
   preview?: boolean
-  /** Whether the code is editable. */
+  /** Theme of the editor. */
   theme?: "light" | "dark"
 }
 
@@ -25,18 +23,6 @@ export function ExpoSnack({
   preview = true,
   theme = "dark",
 }: ExpoSnackProps) {
-  const iframeRef = useRef<HTMLIFrameElement>(null)
-
-  useEffect(() => {
-    // Load the Expo Snack embed script if not already loaded
-    if (!document.querySelector('script[src*="snack.expo.dev"]')) {
-      const script = document.createElement("script")
-      script.src = "https://snack.expo.dev/embed.js"
-      script.async = true
-      document.body.appendChild(script)
-    }
-  }, [])
-
   const params = new URLSearchParams({
     platform,
     preview: String(preview),
@@ -55,7 +41,6 @@ export function ExpoSnack({
         style={{ height }}
       >
         <iframe
-          ref={iframeRef}
           src={`https://snack.expo.dev/embedded/${snackId}?${params.toString()}`}
           title={title ?? "Expo Snack"}
           style={{
@@ -63,8 +48,8 @@ export function ExpoSnack({
             height: "100%",
             border: 0,
           }}
-          allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-          sandbox="allow-forms allow-modals allow-popups allow-presentation allow-scripts"
+          // eslint-disable-next-line react/iframe-missing-sandbox -- Expo Snack requires both allow-scripts and allow-same-origin
+          sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
         />
       </div>
     </div>

@@ -3,6 +3,8 @@ title: Examples
 description: Interactive examples demonstrating hoyst's overlay features.
 ---
 
+{/* prettier-ignore */}
+
 ## Close vs Unmount
 
 The core concept in hoyst: `close()` hides the overlay (keeps it mounted for animations), while `unmount()` removes it from the tree entirely.
@@ -12,10 +14,9 @@ The core concept in hoyst: `close()` hides the overlay (keeps it mounted for ani
   code={`import { OverlayProvider, OverlaySlot, overlay } from "hoyst"
 
 function Modal({ overlayId, isOpen, close, unmount }) {
-return (
-
-<div
-style={{
+  return (
+    <div
+      style={{
         position: "fixed",
         inset: 0,
         display: "flex",
@@ -25,25 +26,27 @@ style={{
         opacity: isOpen ? 1 : 0,
         transition: "opacity 300ms",
         pointerEvents: isOpen ? "auto" : "none",
-      }} >
-<div
-style={{
+      }}
+    >
+      <div
+        style={{
           background: "white",
           borderRadius: 12,
           padding: 24,
           minWidth: 280,
-        }} >
-<p style={{ margin: "0 0 16px" }}>Overlay: {overlayId}</p>
-<p style={{ margin: "0 0 12px", fontSize: 12, color: "#666" }}>
-Close = hide (stays mounted). Unmount = remove from tree.
-</p>
-<div style={{ display: "flex", gap: 8 }}>
-<button onClick={close}>Close</button>
-<button onClick={unmount}>Unmount</button>
-</div>
-</div>
-</div>
-)
+        }}
+      >
+        <p style={{ margin: "0 0 16px" }}>Overlay: {overlayId}</p>
+        <p style={{ margin: "0 0 12px", fontSize: 12, color: "#666" }}>
+          Close = hide (stays mounted). Unmount = remove from tree.
+        </p>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button onClick={close}>Close</button>
+          <button onClick={unmount}>Unmount</button>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default function App() {
@@ -70,10 +73,9 @@ Use `overlay.openAsync()` to await a user's response. The Promise resolves when 
 import { OverlayProvider, OverlaySlot, overlay } from "hoyst"
 
 function ConfirmDialog({ isOpen, close, reject }) {
-return (
-
-<div
-style={{
+  return (
+    <div
+      style={{
         position: "fixed",
         inset: 0,
         display: "flex",
@@ -83,52 +85,66 @@ style={{
         opacity: isOpen ? 1 : 0,
         transition: "opacity 200ms",
         pointerEvents: isOpen ? "auto" : "none",
-      }} >
-<div
-style={{
+      }}
+    >
+      <div
+        style={{
           background: "white",
           borderRadius: 12,
           padding: 24,
           minWidth: 300,
-        }} >
-<p style={{ margin: "0 0 16px", fontWeight: 600 }}>
-Delete this item?
-</p>
-<div style={{ display: "flex", gap: 8 }}>
-<button
-onClick={() => close(true)}
-style={{ background: "#ef4444", color: "white", border: "none", padding: "6px 16px", borderRadius: 6, cursor: "pointer" }} >
-Yes, delete
-</button>
-<button
-onClick={() => close(false)}
-style={{ padding: "6px 16px", borderRadius: 6, cursor: "pointer" }} >
-Cancel
-</button>
-</div>
-</div>
-</div>
-)
+        }}
+      >
+        <p style={{ margin: "0 0 16px", fontWeight: 600 }}>
+          Delete this item?
+        </p>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button
+            onClick={() => close(true)}
+            style={{
+              background: "#ef4444",
+              color: "white",
+              border: "none",
+              padding: "6px 16px",
+              borderRadius: 6,
+              cursor: "pointer",
+            }}
+          >
+            Yes, delete
+          </button>
+          <button
+            onClick={() => close(false)}
+            style={{
+              padding: "6px 16px",
+              borderRadius: 6,
+              cursor: "pointer",
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default function App() {
   const [result, setResult] = useState("No action yet")
 
-async function handleDelete() {
-const confirmed = await overlay.openAsync(ConfirmDialog)
-setResult(confirmed ? "Item deleted!" : "Cancelled.")
-}
+  async function handleDelete() {
+    const confirmed = await overlay.openAsync(ConfirmDialog)
+    setResult(confirmed ? "Item deleted!" : "Cancelled.")
+  }
 
-return (
-
-<OverlayProvider>
-<OverlaySlot />
-<div>
-<button onClick={handleDelete}>Delete Item</button>
-<p style={{ marginTop: 12, color: "#666" }}>Result: {result}</p>
-</div>
-</OverlayProvider>
-)
+  return (
+    <OverlayProvider>
+      <OverlaySlot />
+      <div>
+        <button onClick={handleDelete}>Delete Item</button>
+        <p style={{ marginTop: 12, color: "#666" }}>Result: {result}</p>
+      </div>
+    </OverlayProvider>
+  )
 }`}
 />
 
@@ -144,11 +160,10 @@ import { OverlayProvider, OverlaySlot } from "hoyst"
 const ThemeContext = createContext({ color: "#000" })
 
 function ThemedModal({ isOpen, close, unmount }) {
-const theme = useContext(ThemeContext)
-return (
-
-<div
-style={{
+  const theme = useContext(ThemeContext)
+  return (
+    <div
+      style={{
         position: "fixed",
         inset: 0,
         display: "flex",
@@ -158,25 +173,27 @@ style={{
         opacity: isOpen ? 1 : 0,
         transition: "opacity 200ms",
         pointerEvents: isOpen ? "auto" : "none",
-      }} >
-<div
-style={{
+      }}
+    >
+      <div
+        style={{
           background: "white",
           borderRadius: 12,
           padding: 24,
           minWidth: 280,
           borderTop: \`4px solid \${theme.color}\`,
-        }} >
-<p style={{ margin: "0 0 8px", fontWeight: 600, color: theme.color }}>
-Theme color: {theme.color}
-</p>
-<p style={{ margin: "0 0 16px", fontSize: 12, color: "#666" }}>
-This overlay reads ThemeContext from the Slot's position in the tree.
-</p>
-<button onClick={unmount}>Close</button>
-</div>
-</div>
-)
+        }}
+      >
+        <p style={{ margin: "0 0 8px", fontWeight: 600, color: theme.color }}>
+          Theme color: {theme.color}
+        </p>
+        <p style={{ margin: "0 0 16px", fontSize: 12, color: "#666" }}>
+          This overlay reads ThemeContext from the Slot's position in the tree.
+        </p>
+        <button onClick={unmount}>Close</button>
+      </div>
+    </div>
+  )
 }
 
 export default function App() {
