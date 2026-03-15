@@ -26,6 +26,18 @@
         "types": "./dist/web/index.d.ts",
         "default": "./dist/web/index.js"
       }
+    },
+    "./web": {
+      "import": {
+        "types": "./dist/web/index.d.ts",
+        "default": "./dist/web/index.js"
+      }
+    },
+    "./native": {
+      "import": {
+        "types": "./dist/native/index.d.ts",
+        "default": "./dist/native/index.js"
+      }
     }
   },
   "publishConfig": {
