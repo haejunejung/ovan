@@ -3,7 +3,7 @@ title: Getting Started
 description: Teleport your overlays. An overlay library for React and React Native.
 ---
 
-**ovan** is an overlay library for **modals, toasts, and dialogs** on **React** (web) and **React Native**.
+**hoyst** is an overlay library for **modals, toasts, and dialogs** on **React** (web) and **React Native**.
 
 It provides Slot-based context preservation, close/unmount separation, Promise-based result returns, and fundamentally solves the native layer stacking issues in React Native.
 
@@ -12,13 +12,13 @@ It provides Slot-based context preservation, close/unmount separation, Promise-b
 ### React (web)
 
 ```bash
-pnpm add ovan react react-dom
+pnpm add hoyst react react-dom
 ```
 
 ### React Native
 
 ```bash
-pnpm add ovan react react-native react-native-teleport
+pnpm add hoyst react react-native react-native-teleport
 ```
 
 ## Quick Setup
@@ -26,7 +26,7 @@ pnpm add ovan react react-native react-native-teleport
 Wrap your app with `OverlayProvider` and place an `OverlaySlot`:
 
 ```tsx title="App.tsx"
-import { OverlayProvider, OverlaySlot } from "ovan"
+import { OverlayProvider, OverlaySlot } from "hoyst"
 
 function App() {
   return (
@@ -41,7 +41,7 @@ function App() {
 Then open overlays from anywhere:
 
 ```tsx
-import { overlay } from "ovan"
+import { overlay } from "hoyst"
 
 overlay.open(MyModal, { overlayId: "my-modal" })
 ```

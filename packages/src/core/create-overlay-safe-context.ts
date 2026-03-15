@@ -13,7 +13,7 @@ export type OverlayStateContextValue = OverlayData & {
 
 export function createOverlaySafeContext() {
   const [OverlayContextProvider, useOverlayContext] =
-    createSafeContext<OverlayStateContextValue>("ovan/OverlayContext")
+    createSafeContext<OverlayStateContextValue>("hoyst/OverlayContext")
 
   function useCurrentOverlay() {
     return useOverlayContext().current

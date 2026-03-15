@@ -1,6 +1,6 @@
 /**
- * Generate ovan prefixed random id
+ * Generate hoyst prefixed random id
  */
 export function generateRandomId() {
-  return `ovan-${Math.random().toString(36).slice(2, 11)}`
+  return `hoyst-${Math.random().toString(36).slice(2, 11)}`
 }

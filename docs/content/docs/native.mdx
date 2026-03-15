@@ -1,21 +1,21 @@
 ---
 title: React Native
-description: Using ovan with React Native and Expo.
+description: Using hoyst with React Native and Expo.
 ---
 
-ovan works on React Native via [react-native-teleport](https://github.com/kirillzyusko/react-native-teleport), which repositions views at the native level while preserving React context.
+hoyst works on React Native via [react-native-teleport](https://github.com/kirillzyusko/react-native-teleport), which repositions views at the native level while preserving React context.
 
 ## Setup
 
 ```bash
-pnpm add ovan react react-native react-native-teleport
+pnpm add hoyst react react-native react-native-teleport
 ```
 
 ### Wrap with PortalProvider
 
 ```tsx title="App.tsx"
-import { PortalProvider } from "ovan/native"
-import { OverlayProvider, OverlaySlot } from "ovan/native"
+import { PortalProvider } from "hoyst/native"
+import { OverlayProvider, OverlaySlot } from "hoyst/native"
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
 ### Open overlays
 
 ```tsx
-import { overlay } from "ovan/native"
+import { overlay } from "hoyst/native"
 
 overlay.open(MyModal, { overlayId: "my-modal" })
 ```
@@ -48,13 +48,13 @@ React Native has no built-in `createPortal`. Existing JS-based portals break Rea
 Try the React Native examples in Expo Snack:
 
 <ExpoSnack
-  snackId="@haejunejung/ovan-demo"
-  title="ovan React Native Demo"
+  snackId="@haejunejung/hoyst-demo"
+  title="hoyst React Native Demo"
   platform="android"
   height={700}
 />
 
 <Callout type="info">
-  The Expo Snack above requires ovan to be published to npm. Until then, you can
+  The Expo Snack above requires hoyst to be published to npm. Until then, you can
   run the example locally: ```bash cd examples/app && pnpm start ```
 </Callout>

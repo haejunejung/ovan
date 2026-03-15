@@ -1,6 +1,6 @@
-import type { OverlayControllerComponent } from "ovan"
+import type { OverlayControllerComponent } from "hoyst"
 import { createContext, useContext } from "react"
-import { OverlaySlot } from "ovan"
+import { OverlaySlot } from "hoyst"
 import {
   CLOSE_DURATION_MS,
   getModalTransition,

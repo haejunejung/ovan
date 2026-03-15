@@ -1,15 +1,15 @@
 ---
 title: Examples
-description: Interactive examples demonstrating ovan's overlay features.
+description: Interactive examples demonstrating hoyst's overlay features.
 ---
 
 ## Close vs Unmount
 
-The core concept in ovan: `close()` hides the overlay (keeps it mounted for animations), while `unmount()` removes it from the tree entirely.
+The core concept in hoyst: `close()` hides the overlay (keeps it mounted for animations), while `unmount()` removes it from the tree entirely.
 
 <SandpackDemo
   title="close() vs unmount()"
-  code={`import { OverlayProvider, OverlaySlot, overlay } from "ovan"
+  code={`import { OverlayProvider, OverlaySlot, overlay } from "hoyst"
 
 function Modal({ overlayId, isOpen, close, unmount }) {
 return (
@@ -67,7 +67,7 @@ Use `overlay.openAsync()` to await a user's response. The Promise resolves when 
 <SandpackDemo
   title="openAsync — Confirm Dialog"
   code={`import { useState } from "react"
-import { OverlayProvider, OverlaySlot, overlay } from "ovan"
+import { OverlayProvider, OverlaySlot, overlay } from "hoyst"
 
 function ConfirmDialog({ isOpen, close, reject }) {
 return (
@@ -134,12 +134,12 @@ return (
 
 ## Context Preservation with Slots
 
-ovan's key feature: overlays opened from an `OverlaySlot` inherit the slot's React context. The overlay renders in the slot's tree, then teleports to the host.
+hoyst's key feature: overlays opened from an `OverlaySlot` inherit the slot's React context. The overlay renders in the slot's tree, then teleports to the host.
 
 <SandpackDemo
   title="Slot-based Context Inheritance"
   code={`import { createContext, useContext } from "react"
-import { OverlayProvider, OverlaySlot } from "ovan"
+import { OverlayProvider, OverlaySlot } from "hoyst"
 
 const ThemeContext = createContext({ color: "#000" })
 

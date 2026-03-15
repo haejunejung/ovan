@@ -3,7 +3,7 @@ import type { ReactNode } from "react"
 import "./global.css"
 
 export const metadata = {
-  title: "ovan",
+  title: "hoyst",
   description: "Overlay library for React and React Native",
 }
 

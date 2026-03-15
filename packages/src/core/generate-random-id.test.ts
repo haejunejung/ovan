@@ -2,10 +2,10 @@ import { describe, expect, it } from "vitest"
 import { generateRandomId } from "./generate-random-id"
 
 describe("generaterRandomId", () => {
-  it("should return a string with ovan prefix", () => {
+  it("should return a string with hoyst prefix", () => {
     const id = generateRandomId()
-    expect(id).toMatch(/^ovan-[a-z0-9]+$/)
-    expect(id.startsWith("ovan-")).toBe(true)
+    expect(id).toMatch(/^hoyst-[a-z0-9]+$/)
+    expect(id.startsWith("hoyst-")).toBe(true)
   })
 
   it("should return unique ids on each call", () => {

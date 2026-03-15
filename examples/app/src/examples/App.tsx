@@ -1,4 +1,4 @@
-import { PortalProvider } from "@ovan/react-native"
+import { PortalProvider } from "@hoyst/react-native"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import Launcher from "./Launcher"
 import { OverlayDevtoolsPanel } from "./OverlayDevtoolsPanel"

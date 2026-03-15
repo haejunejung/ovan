@@ -13,13 +13,13 @@ config.watchFolders = [monorepoRoot]
 config.resolver = {
   ...config.resolver,
   resolveRequest(context, moduleName, platform) {
-    if (moduleName === "@ovan/core") {
+    if (moduleName === "@hoyst/core") {
       return {
         type: "sourceFile",
         filePath: path.join(monorepoRoot, "packages/core/src/index.ts"),
       }
     }
-    if (moduleName === "@ovan/react-native") {
+    if (moduleName === "@hoyst/react-native") {
       return {
         type: "sourceFile",
         filePath: path.join(monorepoRoot, "packages/react-native/src/index.ts"),

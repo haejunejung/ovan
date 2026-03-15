@@ -1,6 +1,6 @@
-# Contributing to ovan
+# Contributing to hoyst
 
-Thank you for your interest in contributing to ovan! This guide will help you get started.
+Thank you for your interest in contributing to hoyst! This guide will help you get started.
 
 ## Development setup
 
@@ -13,8 +13,8 @@ Thank you for your interest in contributing to ovan! This guide will help you ge
 
 ```bash
 # Clone the repository
-git clone https://github.com/user/ovan.git
-cd ovan
+git clone https://github.com/user/hoyst.git
+cd hoyst
 
 # Install dependencies
 pnpm install
@@ -58,7 +58,7 @@ Open an issue with the **feature request** label. Please describe the use case a
 ## Project structure
 
 ```
-ovan/
+hoyst/
 └── src/
     ├── core/        # Shared logic (state, types, hooks)
     ├── web/         # React (web) adapter — createPortal

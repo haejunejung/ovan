@@ -1,12 +1,12 @@
 /**
  * Example app: full-screen host and stacking so newest overlay is on top (iOS/Android).
- * Uses useOverlayState() to derive orderIndex and a custom wrapOverlay; ovan is unchanged.
+ * Uses useOverlayState() to derive orderIndex and a custom wrapOverlay; hoyst is unchanged.
  */
 import {
   createOverlayProvider,
   OVERLAY_HOST_NAME,
   portalAdapter,
-} from "@ovan/react-native"
+} from "@hoyst/react-native"
 import { StyleSheet, View } from "react-native"
 import { PortalHost } from "react-native-teleport"
 

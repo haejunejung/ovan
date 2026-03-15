@@ -1,5 +1,5 @@
-import type { OverlayControllerComponent } from "ovan"
-import { OverlaySlot, overlay } from "ovan"
+import type { OverlayControllerComponent } from "hoyst"
+import { OverlaySlot, overlay } from "hoyst"
 import {
   CLOSE_DURATION_MS,
   getModalTransition,

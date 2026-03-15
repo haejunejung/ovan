@@ -32,7 +32,7 @@ export function SandpackDemo({ code, files, title }: SandpackDemoProps) {
         }}
         customSetup={{
           dependencies: {
-            ovan: "latest",
+            hoyst: "latest",
             react: "^19.0.0",
             "react-dom": "^19.0.0",
           },

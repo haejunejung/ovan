@@ -14,7 +14,7 @@
     "format:check": "cd ../.. && pnpm exec oxfmt --check examples/web"
   },
   "dependencies": {
-    "ovan": "workspace:*",
+    "hoyst": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

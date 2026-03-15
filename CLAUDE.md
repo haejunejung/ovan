@@ -4,13 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**ovan** is an overlay library (modals, toasts, dialogs) for **React** (web) and **React Native**. It extends the declarative overlay pattern from [overlay-kit](https://github.com/toss/overlay-kit) with Slot-based context preservation and native layer conflict resolution via `react-native-teleport`.
+**hoyst** is an overlay library (modals, toasts, dialogs) for **React** (web) and **React Native**. It extends the declarative overlay pattern from [overlay-kit](https://github.com/toss/overlay-kit) with Slot-based context preservation and native layer conflict resolution via `react-native-teleport`.
 
 ## Repository Structure
 
 Monorepo using **pnpm workspaces** with three workspace members:
 
-- `packages/` — the `ovan` library (published as `ovan` on npm)
+- `packages/` — the `hoyst` library (published as `hoyst` on npm)
 - `examples/web/` — Vite-based React web example app
 - `examples/app/` — Expo React Native example app
 - `docs/` — Fumadocs documentation site (Next.js)
@@ -78,8 +78,8 @@ Both `web/index.ts` and `native/index.ts` re-export everything from `core/` plus
 ### Build Output
 
 Rolldown produces two entrypoints in `packages/dist/`:
-- `dist/web/index.js` + `.d.ts` — for `ovan/web` (or bare `ovan` import)
-- `dist/native/index.js` + `.d.ts` — for `ovan/native` (also auto-selected via `react-native` exports condition)
+- `dist/web/index.js` + `.d.ts` — for `hoyst/web` (or bare `hoyst` import)
+- `dist/native/index.js` + `.d.ts` — for `hoyst/native` (also auto-selected via `react-native` exports condition)
 
 ### Testing
 

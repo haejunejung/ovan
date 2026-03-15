@@ -1,4 +1,4 @@
-import type { OverlayControllerComponent } from "@ovan/react-native"
+import type { OverlayControllerComponent } from "@hoyst/react-native"
 import { Button, Text, View } from "react-native"
 import { CLOSE_DURATION_MS, modalStyles, OverlayModal } from "./common"
 import { OverlaySlot, overlay } from "./overlay-setup"

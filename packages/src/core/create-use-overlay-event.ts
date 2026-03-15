@@ -31,7 +31,7 @@ const OVERLAY_EVENT_NAMES = [
 ] as const satisfies (keyof OverlayEventMap)[]
 
 export function createUseOverlayEvent(emitter: OverlayEmitter) {
-  const PREFIX = "ovan"
+  const PREFIX = "hoyst"
   return createUseExternalEvent<OverlayEventMap>(
     emitter,
     PREFIX,

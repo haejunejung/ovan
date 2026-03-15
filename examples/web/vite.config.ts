@@ -10,8 +10,8 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@ovan/core": path.join(packagesDir, "core/src"),
-      "@ovan/react": path.join(packagesDir, "react/src"),
+      "@hoyst/core": path.join(packagesDir, "core/src"),
+      "@hoyst/react": path.join(packagesDir, "react/src"),
     },
   },
   server: {

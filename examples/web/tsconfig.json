@@ -17,8 +17,8 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@ovan/core": ["../../packages/core/src"],
-      "@ovan/react": ["../../packages/react/src"]
+      "@hoyst/core": ["../../packages/core/src"],
+      "@hoyst/react": ["../../packages/react/src"]
     }
   },
   "include": ["src"]

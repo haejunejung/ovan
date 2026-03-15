@@ -1,11 +1,11 @@
 ---
 title: API Reference
-description: Complete API reference for ovan.
+description: Complete API reference for hoyst.
 ---
 
 ## Default Exports
 
-Import directly from `ovan` (web) or `ovan/native`. No setup needed.
+Import directly from `hoyst` (web) or `hoyst/native`. No setup needed.
 
 ```tsx
 import {
@@ -16,7 +16,7 @@ import {
   useCurrentOverlay,
   useOverlayData,
   useOverlayState,
-} from "ovan"
+} from "hoyst"
 ```
 
 | Export                | Description                                                                    |
@@ -34,7 +34,7 @@ import {
 For advanced usage: creates an **isolated** overlay tree with its own state. Useful for multiple independent overlay systems, SSR, or testing.
 
 ```tsx
-import { createOverlayProvider } from "ovan"
+import { createOverlayProvider } from "hoyst"
 
 const {
   overlay: featureOverlay,
@@ -125,7 +125,7 @@ function DeepChild() {
 
 ## TypeScript Types
 
-Import from `ovan` or `ovan/native`:
+Import from `hoyst` or `hoyst/native`:
 
 | Type                                 | Description                                                                |
 | ------------------------------------ | -------------------------------------------------------------------------- |

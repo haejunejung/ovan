@@ -79,7 +79,7 @@ export interface OverlayAPI {
 export function createOverlay(
   emitter: OverlayEmitter,
 ): OverlayAPI & { dispose: () => void } {
-  const PREFIX = "ovan"
+  const PREFIX = "hoyst"
 
   /**
    * Pending `openAsync` rejecters keyed by overlayId.

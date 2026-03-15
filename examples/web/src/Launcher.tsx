@@ -11,7 +11,7 @@ import {
   Example9StackingMultiSlot,
 } from "./examples"
 import { OverlayDevtoolsPanel } from "./OverlayDevtoolsPanel"
-import { OverlayProvider, OverlaySlot, useOverlayState } from "ovan"
+import { OverlayProvider, OverlaySlot, useOverlayState } from "hoyst"
 
 const EXAMPLES = [
   { id: 1, label: "1. Close vs Unmount", Component: Example1CloseUnmount },
