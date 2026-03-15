@@ -15,6 +15,7 @@
     "**/node_modules",
     "**/dist",
     "**/*.md",
+    "**/*.mdx",
     "**/pnpm-lock.yaml",
     "**/*.d.ts",
     "**/*.d.ts.map",
