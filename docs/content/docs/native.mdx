@@ -1,0 +1,60 @@
+---
+title: React Native
+description: Using ovan with React Native and Expo.
+---
+
+ovan works on React Native via [react-native-teleport](https://github.com/kirillzyusko/react-native-teleport), which repositions views at the native level while preserving React context.
+
+## Setup
+
+```bash
+pnpm add ovan react react-native react-native-teleport
+```
+
+### Wrap with PortalProvider
+
+```tsx title="App.tsx"
+import { PortalProvider } from "ovan/native"
+import { OverlayProvider, OverlaySlot } from "ovan/native"
+
+function App() {
+  return (
+    <PortalProvider>
+      <OverlayProvider>
+        <YourContent />
+        <OverlaySlot />
+      </OverlayProvider>
+    </PortalProvider>
+  )
+}
+```
+
+### Open overlays
+
+```tsx
+import { overlay } from "ovan/native"
+
+overlay.open(MyModal, { overlayId: "my-modal" })
+```
+
+## Why react-native-teleport?
+
+React Native has no built-in `createPortal`. Existing JS-based portals break React context. Native-layer overlays (RN `Modal`, bottom sheets) live in separate view hierarchies, making `z-index` useless.
+
+`react-native-teleport` repositions views at the native level (Fabric/Paper), preserving React context while placing overlays at the correct position in the native view hierarchy.
+
+## Live Demo
+
+Try the React Native examples in Expo Snack:
+
+<ExpoSnack
+  snackId="@haejunejung/ovan-demo"
+  title="ovan React Native Demo"
+  platform="android"
+  height={700}
+/>
+
+<Callout type="info">
+  The Expo Snack above requires ovan to be published to npm. Until then, you can
+  run the example locally: ```bash cd examples/app && pnpm start ```
+</Callout>

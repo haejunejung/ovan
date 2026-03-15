@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "Ovan Example",
+    "slug": "ovan-example-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "hermesEnabled": true,
+    "scheme": "ovan-example",
+    "ios": { "bundleIdentifier": "com.anonymous.ovan-example-app" },
+    "android": { "package": "com.anonymous.ovanexampleapp" },
+    "plugins": []
+  }
+}

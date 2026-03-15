@@ -5,11 +5,11 @@ pre-commit:
   commands:
     # 1. Format staged files (re-stage after fix)
     format:
-      glob: '*.{ts,tsx,json,md}'
-      run: pnpm exec biome format --write {staged_files}
+      glob: "*.{ts,tsx,json}"
+      run: pnpm exec oxfmt --write {staged_files}
       stage_fixed: true
-    # 2. Lint (imports + biome) — run when any file staged
+    # 2. Lint — run when any file staged
     lint:
-      glob: '*.{ts,tsx,json}'
-      run: pnpm exec biome lint --write {staged_files}
+      glob: "*.{ts,tsx}"
+      run: pnpm exec oxlint --fix {staged_files}
       stage_fixed: true

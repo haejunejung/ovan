@@ -1,5 +1,5 @@
 import { createUseExternalEvent } from "./create-use-external-event"
-import { overlayEmitter } from "./overlay-emitter"
+import type { OverlayEmitter } from "./overlay-emitter"
 import type { OverlayControllerLike } from "./types"
 
 export interface OverlayEventMap {
@@ -30,11 +30,11 @@ const OVERLAY_EVENT_NAMES = [
   "unmountAll",
 ] as const satisfies (keyof OverlayEventMap)[]
 
-export function createUseOverlayEvent(overlayId: string) {
-  const prefix = `ovan-${overlayId}`
+export function createUseOverlayEvent(emitter: OverlayEmitter) {
+  const PREFIX = "ovan"
   return createUseExternalEvent<OverlayEventMap>(
-    overlayEmitter,
-    prefix,
+    emitter,
+    PREFIX,
     OVERLAY_EVENT_NAMES,
   )
 }

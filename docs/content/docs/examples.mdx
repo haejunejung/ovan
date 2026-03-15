@@ -1,0 +1,206 @@
+---
+title: Examples
+description: Interactive examples demonstrating ovan's overlay features.
+---
+
+## Close vs Unmount
+
+The core concept in ovan: `close()` hides the overlay (keeps it mounted for animations), while `unmount()` removes it from the tree entirely.
+
+<SandpackDemo
+  title="close() vs unmount()"
+  code={`import { OverlayProvider, OverlaySlot, overlay } from "ovan"
+
+function Modal({ overlayId, isOpen, close, unmount }) {
+return (
+
+<div
+style={{
+        position: "fixed",
+        inset: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "rgba(0,0,0,0.4)",
+        opacity: isOpen ? 1 : 0,
+        transition: "opacity 300ms",
+        pointerEvents: isOpen ? "auto" : "none",
+      }} >
+<div
+style={{
+          background: "white",
+          borderRadius: 12,
+          padding: 24,
+          minWidth: 280,
+        }} >
+<p style={{ margin: "0 0 16px" }}>Overlay: {overlayId}</p>
+<p style={{ margin: "0 0 12px", fontSize: 12, color: "#666" }}>
+Close = hide (stays mounted). Unmount = remove from tree.
+</p>
+<div style={{ display: "flex", gap: 8 }}>
+<button onClick={close}>Close</button>
+<button onClick={unmount}>Unmount</button>
+</div>
+</div>
+</div>
+)
+}
+
+export default function App() {
+  return (
+    <OverlayProvider>
+      <OverlaySlot />
+      <button
+        onClick={() => overlay.open(Modal, { overlayId: "demo-modal" })}
+      >
+        Open Modal
+      </button>
+    </OverlayProvider>
+  )
+}`}
+/>
+
+## Promise-based Results (openAsync)
+
+Use `overlay.openAsync()` to await a user's response. The Promise resolves when `close(value)` is called, or rejects when `reject(reason)` is called.
+
+<SandpackDemo
+  title="openAsync — Confirm Dialog"
+  code={`import { useState } from "react"
+import { OverlayProvider, OverlaySlot, overlay } from "ovan"
+
+function ConfirmDialog({ isOpen, close, reject }) {
+return (
+
+<div
+style={{
+        position: "fixed",
+        inset: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "rgba(0,0,0,0.4)",
+        opacity: isOpen ? 1 : 0,
+        transition: "opacity 200ms",
+        pointerEvents: isOpen ? "auto" : "none",
+      }} >
+<div
+style={{
+          background: "white",
+          borderRadius: 12,
+          padding: 24,
+          minWidth: 300,
+        }} >
+<p style={{ margin: "0 0 16px", fontWeight: 600 }}>
+Delete this item?
+</p>
+<div style={{ display: "flex", gap: 8 }}>
+<button
+onClick={() => close(true)}
+style={{ background: "#ef4444", color: "white", border: "none", padding: "6px 16px", borderRadius: 6, cursor: "pointer" }} >
+Yes, delete
+</button>
+<button
+onClick={() => close(false)}
+style={{ padding: "6px 16px", borderRadius: 6, cursor: "pointer" }} >
+Cancel
+</button>
+</div>
+</div>
+</div>
+)
+}
+
+export default function App() {
+  const [result, setResult] = useState("No action yet")
+
+async function handleDelete() {
+const confirmed = await overlay.openAsync(ConfirmDialog)
+setResult(confirmed ? "Item deleted!" : "Cancelled.")
+}
+
+return (
+
+<OverlayProvider>
+<OverlaySlot />
+<div>
+<button onClick={handleDelete}>Delete Item</button>
+<p style={{ marginTop: 12, color: "#666" }}>Result: {result}</p>
+</div>
+</OverlayProvider>
+)
+}`}
+/>
+
+## Context Preservation with Slots
+
+ovan's key feature: overlays opened from an `OverlaySlot` inherit the slot's React context. The overlay renders in the slot's tree, then teleports to the host.
+
+<SandpackDemo
+  title="Slot-based Context Inheritance"
+  code={`import { createContext, useContext } from "react"
+import { OverlayProvider, OverlaySlot } from "ovan"
+
+const ThemeContext = createContext({ color: "#000" })
+
+function ThemedModal({ isOpen, close, unmount }) {
+const theme = useContext(ThemeContext)
+return (
+
+<div
+style={{
+        position: "fixed",
+        inset: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "rgba(0,0,0,0.4)",
+        opacity: isOpen ? 1 : 0,
+        transition: "opacity 200ms",
+        pointerEvents: isOpen ? "auto" : "none",
+      }} >
+<div
+style={{
+          background: "white",
+          borderRadius: 12,
+          padding: 24,
+          minWidth: 280,
+          borderTop: \`4px solid \${theme.color}\`,
+        }} >
+<p style={{ margin: "0 0 8px", fontWeight: 600, color: theme.color }}>
+Theme color: {theme.color}
+</p>
+<p style={{ margin: "0 0 16px", fontSize: 12, color: "#666" }}>
+This overlay reads ThemeContext from the Slot's position in the tree.
+</p>
+<button onClick={unmount}>Close</button>
+</div>
+</div>
+)
+}
+
+export default function App() {
+  return (
+    <OverlayProvider>
+      <ThemeContext.Provider value={{ color: "#2563eb" }}>
+        <OverlaySlot>
+          {(overlay) => (
+            <div>
+              <p style={{ marginBottom: 8 }}>
+                ThemeContext provides <strong>color: #2563eb</strong>
+              </p>
+              <button
+                onClick={() =>
+                  overlay.open(ThemedModal, { overlayId: "themed" })
+                }
+              >
+                Open Themed Modal
+              </button>
+            </div>
+          )}
+        </OverlaySlot>
+      </ThemeContext.Provider>
+    </OverlayProvider>
+  )
+}`}
+/>

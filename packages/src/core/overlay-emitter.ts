@@ -1,7 +1,14 @@
 import mitt from "mitt"
 
 /**
- * Shared emitter for overlay events
- * React layer subscribes via createUseOverlayEvent(overlayId).
+ * Per-provider emitter factory.
+ *
+ * Each `createOverlayProvider()` call creates its own emitter so that
+ * multiple overlay trees are fully isolated — no shared global state,
+ * no cross-test leakage, and no risk of SSR interference.
  */
-export const overlayEmitter = mitt<Record<string, unknown>>()
+export type OverlayEmitter = ReturnType<typeof createOverlayEmitter>
+
+export function createOverlayEmitter() {
+  return mitt<Record<string, unknown>>()
+}

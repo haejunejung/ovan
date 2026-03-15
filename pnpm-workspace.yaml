@@ -2,6 +2,7 @@ packages:
   - packages
   - examples/app
   - examples/web
+  - docs
 
 onlyBuiltDependencies:
   - esbuild

@@ -1,0 +1,7 @@
+{
+  "tool_name": "WebFetch",
+  "tool_input_preview": "{\"url\":\"https://rolldown.rs/reference/config-options\",\"prompt\":\"Extract all configuration options relevant to: multiple entrypoints (input), output format (ESM), output directory, external dependencie...",
+  "error": "Request failed with status code 404",
+  "timestamp": "2026-03-15T04:41:47.091Z",
+  "retry_count": 3
+}

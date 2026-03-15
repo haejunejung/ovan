@@ -17,8 +17,8 @@ import {
   createUseOverlayEvent,
   type OverlayEventMap,
 } from "./create-use-overlay-event"
-import { generateRandomId } from "./generate-random-id"
 import { ContentOverlayController } from "./overlay-controller-content"
+import { createOverlayEmitter } from "./overlay-emitter"
 import type { OverlayHostAdapter } from "./overlay-host-adapter"
 import { overlayReducer } from "./overlay-reducer"
 
@@ -35,14 +35,16 @@ const defaultAdapter: OverlayHostAdapter = {
  * Creates overlay provider. All logic lives in core.
  * Pass adapter only to change "where to render" (e.g. Portal in react-native).
  */
-/** Context set by each OverlaySlot so descendants get "nearest ancestor slot". Used by useOverlay().open(). */
-const SlotIdContext = createContext<string | null>(null)
-
 export const createOverlayProvider = (adapter?: OverlayHostAdapter) => {
   const { renderHost, wrapOverlay } = adapter ?? defaultAdapter
-  const overlayId = generateRandomId()
-  const overlay = createOverlay(overlayId)
-  const useOverlayEvent = createUseOverlayEvent(overlayId)
+
+  // Per-provider emitter — fully isolates multiple overlay trees.
+  const emitter = createOverlayEmitter()
+  const { dispose, ...overlay } = createOverlay(emitter)
+  const useOverlayEvent = createUseOverlayEvent(emitter)
+
+  // Per-provider SlotIdContext — prevents cross-provider slot leakage.
+  const SlotIdContext = createContext<string | null>(null)
   const {
     OverlayContextProvider,
     useCurrentOverlay,
@@ -128,6 +130,7 @@ export const createOverlayProvider = (adapter?: OverlayHostAdapter) => {
 
     useEffect(() => {
       return () => {
+        dispose()
         overlayDispatch({ type: "REMOVE_ALL" })
       }
     }, [])

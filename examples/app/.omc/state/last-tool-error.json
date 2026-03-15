@@ -1,0 +1,7 @@
+{
+  "tool_name": "WebFetch",
+  "tool_input_preview": "{\"url\":\"https://www.fumadocs.dev/docs/ui/setup\",\"prompt\":\"Extract all: npm install commands, package names and versions, project structure, all configuration file code examples including layout.tsx, p...",
+  "error": "Request failed with status code 404",
+  "timestamp": "2026-03-15T04:29:00.022Z",
+  "retry_count": 1
+}

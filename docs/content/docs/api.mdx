@@ -1,0 +1,137 @@
+---
+title: API Reference
+description: Complete API reference for ovan.
+---
+
+## Default Exports
+
+Import directly from `ovan` (web) or `ovan/native`. No setup needed.
+
+```tsx
+import {
+  overlay,
+  OverlayProvider,
+  OverlaySlot,
+  useOverlay,
+  useCurrentOverlay,
+  useOverlayData,
+  useOverlayState,
+} from "ovan"
+```
+
+| Export                | Description                                                                    |
+| --------------------- | ------------------------------------------------------------------------------ |
+| `overlay`             | Object with `open`, `close`, `unmount`, `openAsync`, `closeAll`, `unmountAll`. |
+| `OverlayProvider`     | Provider component. Wrap your app or the part that uses overlays.              |
+| `OverlaySlot`         | Slot component. Overlays opened from a Slot inherit its React context.         |
+| `useOverlay()`        | Returns an overlay object bound to the nearest ancestor `OverlaySlot`.         |
+| `useCurrentOverlay()` | Returns the current overlay id (or `null`).                                    |
+| `useOverlayData()`    | Returns the full overlay list and state.                                       |
+| `useOverlayState()`   | Returns the complete overlay state (for devtools or advanced use).             |
+
+## createOverlayProvider(adapter?)
+
+For advanced usage: creates an **isolated** overlay tree with its own state. Useful for multiple independent overlay systems, SSR, or testing.
+
+```tsx
+import { createOverlayProvider } from "ovan"
+
+const {
+  overlay: featureOverlay,
+  OverlayProvider: FeatureOverlayProvider,
+  OverlaySlot: FeatureOverlaySlot,
+  useOverlay: useFeatureOverlay,
+} = createOverlayProvider()
+```
+
+Pass a custom adapter to control the rendering strategy (e.g., a custom `PortalHost` position in React Native).
+
+## overlay.open(controller, options?)
+
+Opens an overlay. Returns the resolved `overlayId`.
+
+```tsx
+const id = overlay.open(MyModal, { overlayId: "my-modal" })
+```
+
+### Controller Props
+
+| Prop        | Type         | Description                                                 |
+| ----------- | ------------ | ----------------------------------------------------------- |
+| `overlayId` | `string`     | The overlay's unique identifier.                            |
+| `isOpen`    | `boolean`    | `false` after `close()`. Use for visibility and animations. |
+| `close()`   | `() => void` | Sets `isOpen` to `false`. Overlay stays mounted.            |
+| `unmount()` | `() => void` | Removes the overlay from the tree entirely.                 |
+
+### Options
+
+| Option      | Type      | Description                                                        |
+| ----------- | --------- | ------------------------------------------------------------------ |
+| `overlayId` | `string?` | Custom ID. Auto-generated if omitted. Same ID reuses the instance. |
+
+## overlay.openAsync(controller, options?)
+
+Opens an overlay and returns a `Promise<T>` that settles when the overlay calls `close(value)` or `reject(reason)`.
+
+```tsx
+const confirmed = await overlay.openAsync<boolean>(ConfirmDialog)
+```
+
+The controller receives additional props:
+
+| Prop              | Type                         | Description                                |
+| ----------------- | ---------------------------- | ------------------------------------------ |
+| `close(value)`    | `(value: T) => void`         | Resolves the Promise with the given value. |
+| `reject(reason?)` | `(reason?: unknown) => void` | Rejects the Promise.                       |
+
+If the overlay is force-unmounted before settling, the Promise is automatically rejected.
+
+## overlay.close(overlayId)
+
+Sets `isOpen` to `false`. The overlay stays in the tree for exit animations.
+
+## overlay.unmount(overlayId)
+
+Removes the overlay from the tree. If opened via `openAsync`, the pending Promise is rejected.
+
+## overlay.closeAll() / overlay.unmountAll()
+
+Batch operations on all overlays.
+
+## OverlaySlot
+
+Declares an overlay ownership boundary. Two ways to open from a Slot:
+
+### Render-prop
+
+```tsx
+<OverlaySlot>
+  {(overlay) => <button onClick={() => overlay.open(MyModal)}>Open</button>}
+</OverlaySlot>
+```
+
+### useOverlay() hook
+
+```tsx
+function DeepChild() {
+  const overlay = useOverlay()
+  return <button onClick={() => overlay.open(MyModal)}>Open</button>
+}
+
+;<OverlaySlot>
+  <DeepChild />
+</OverlaySlot>
+```
+
+## TypeScript Types
+
+Import from `ovan` or `ovan/native`:
+
+| Type                                 | Description                                                                |
+| ------------------------------------ | -------------------------------------------------------------------------- |
+| `OverlayControllerComponent`         | Standard overlay controller `FC<OverlayControllerProps>`.                  |
+| `OverlayAsyncControllerComponent<T>` | Async controller `FC<OverlayAsyncControllerProps<T>>`.                     |
+| `OverlayControllerProps`             | Props: `overlayId`, `isOpen`, `close`, `unmount`.                          |
+| `OverlayAsyncControllerProps<T>`     | Props: `overlayId`, `isOpen`, `close(value)`, `reject(reason)`, `unmount`. |
+| `OverlaySlotHandle`                  | Ref handle with `unregister()`.                                            |
+| `OverlaySlotChildren`                | `ReactNode \| (overlay) => ReactNode`.                                     |

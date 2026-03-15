@@ -1,0 +1,60 @@
+---
+title: Getting Started
+description: Teleport your overlays. An overlay library for React and React Native.
+---
+
+**ovan** is an overlay library for **modals, toasts, and dialogs** on **React** (web) and **React Native**.
+
+It provides Slot-based context preservation, close/unmount separation, Promise-based result returns, and fundamentally solves the native layer stacking issues in React Native.
+
+## Installation
+
+### React (web)
+
+```bash
+pnpm add ovan react react-dom
+```
+
+### React Native
+
+```bash
+pnpm add ovan react react-native react-native-teleport
+```
+
+## Quick Setup
+
+Wrap your app with `OverlayProvider` and place an `OverlaySlot`:
+
+```tsx title="App.tsx"
+import { OverlayProvider, OverlaySlot } from "ovan"
+
+function App() {
+  return (
+    <OverlayProvider>
+      <OverlaySlot />
+      {/* your app content */}
+    </OverlayProvider>
+  )
+}
+```
+
+Then open overlays from anywhere:
+
+```tsx
+import { overlay } from "ovan"
+
+overlay.open(MyModal, { overlayId: "my-modal" })
+```
+
+No setup file needed — just import and use.
+
+<Callout type="info">
+  Need multiple isolated overlay trees? Use `createOverlayProvider()` to create
+  separate instances. See the [API
+  Reference](/docs/api#createoverlayprovideradapter) for details.
+</Callout>
+
+## Next Steps
+
+- [Usage Examples](/docs/examples) — Interactive demos of close/unmount, async overlays, and context preservation
+- [API Reference](/docs/api) — Full API documentation
